@@ -1,4 +1,6 @@
 import sqlite3
+import pathlib
+from pathlib import Path
 
 
 class DBConnector:
@@ -6,7 +8,7 @@ class DBConnector:
     Class for connection to SQLITE DB
     """
     def __init__(self):
-        self.db_path = 'airports.db'
+        self.db_path = Path(pathlib.Path.cwd(), 'airports.db')
 
     def db_connect(self):
         """
