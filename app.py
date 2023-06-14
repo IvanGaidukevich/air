@@ -2,7 +2,7 @@ import tkinter as tk
 from controller import ControllerAirports
 from model import AirportLocator
 from view import AirportLocatorView
-from db_connector import DBConnector, CONFIG
+from db_connector import DBConnector
 
 
 class App(tk.Tk):
@@ -14,10 +14,7 @@ class App(tk.Tk):
         """
         set database connection        
         """
-        db = DBConnector(CONFIG['host'],
-                         CONFIG['user'],
-                         CONFIG['passwd'],
-                         CONFIG['database'])
+        db = DBConnector()
         """
         set the model
         """

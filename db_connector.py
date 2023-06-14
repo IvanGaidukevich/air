@@ -1,27 +1,12 @@
-import mysql
-from mysql.connector import DatabaseError
-
-CONFIG = {"host": "localhost",
-          "user": "root",
-          "passwd": "gaydu777",
-          "database": "flights"}
+import sqlite3
 
 
 class DBConnector:
     """
-    Class for connection to MYSQL DB
+    Class for connection to SQLITE DB
     """
-    def __init__(self, host: str, user: str, passwd: str, database: str):
-        """
-        :param host: host name
-        :param user: username
-        :param passwd: password
-        :param database: database name
-        """
-        self.host = host
-        self.user = user
-        self.passwd = passwd
-        self.database = database
+    def __init__(self):
+        self.db_path = 'airports.db'
 
     def db_connect(self):
         """
@@ -29,6 +14,9 @@ class DBConnector:
         :return: mysql connection object
         """
         try:
-            return mysql.connector.connect(host=self.host, user=self.user, passwd=self.passwd, database=self.database)
-        except DatabaseError:
-            pass
+            sqlite_connection = sqlite3.connect(self.db_path)
+            return sqlite_connection
+        except sqlite3.Error as error:
+            print("SQLite connection error", error)
+
+
